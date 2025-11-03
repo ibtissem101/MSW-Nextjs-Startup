@@ -8,7 +8,7 @@ export function StartMockWorker({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     async function enableMocks() {
       if (process.env.NODE_ENV === "development") {
-        const { initMocks } = await import("../../mocks/initmock");
+        const { initMocks } = await import("@/mocks");
         await initMocks();
       }
       setMockReady(true);
@@ -18,7 +18,7 @@ export function StartMockWorker({ children }: { children: React.ReactNode }) {
   }, []);
 
   if (!isMockReady) {
-    return <div>Loading mocks...</div>;
+    return null;
   }
 
   return <>{children}</>;
